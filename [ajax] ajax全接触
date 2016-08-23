@@ -2,7 +2,7 @@
 一.ajax
 异步的javascript和XML；无需加载整个网页的局部刷新技术。
 
-二.同步和异步
+二.AJAX概念介绍
 1.同步：客户端：发起请求→↓（等待） 页面载入→请求→↓（等待）....
                  →服务器端：处理数据→响应 ↑ 处理数据→响应 ↑ 
 2.异步：客户端：实时请求→↓       页面载入        请求→↓     ......
@@ -59,3 +59,38 @@
     3XX：重定向，表示请求没有成功，客户必须采取进一步动作；
     4XX：客户端错误，表示客户端提交的请求有错误，404；
     5XX：服务器错误，表示服务器不能完成对请求的处理。
+
+7.XMLHTTPRequest发送请求
+  ①open（method，URL，async）（首先创建对象，调用open方法建立请求）
+        ↑ get还是post方法，一般大写；URL参数；是同步还是异步，默认true，异步。
+  ②send（string）（发送请求）
+  一般method是get的时候，直接send（）方法即可；若为post，一般会send一些文件，比如头信息和体信息，头信息包括
+    request.setRequestHeader("content-type","application/x-www-form-urlencoded"); //content-type: form表单的形式提交数据；
+    request.send("name=sss$sex=ss"); //数据有..
+
+8.XMLHTTPRequest取得响应
+  readyState属性的变化代表服务器响应的变化：
+0：请求未初始化，open还没有调用；
+1：服务器已经建立连接，open已经调用了；
+2：请求已接受，接收到头信息；
+3：请求处理中，也就是接收到请求主题；
+4：请求已完成，且响应已就绪，也就是响应完成。    
+
+var request=new XMLHttpRequest();
+    request.open("GET","get.php",true);
+    request.send();
+    request.onreadystatechange=function(){
+        if(request.readyState===4&&request.status===200)//监听服务器{
+            //做一些事情 request.responseText
+        }
+    }
+    
+三.AJAX栗子
+栗子简介;
+  1.查询员工信息，可以通过输入员工编号查询员工基本信息；
+  2.新建员工信息，包含员工姓名，编号，性别，职位；
+实现方案：
+  1.纯HTML页面，用来实现员工查询和新建的页面；
+  2.PHP页面，用来实现查询员工和新建员工的后台接口。
+  php：
+和JS和HTML（静态制作页面的语言）不同，php是一种创建动态交互性站点的服务器端脚本语言；（）
