@@ -1,0 +1,50 @@
+★JSON★
+1.json：javascript对象表示法；
+json是存储交换文本信息的语法，类似XML。采用键值对的方式来组织，抑郁人们阅读和编写，同时也易于机器解析和生成。
+json是独立与语言的，也就是说不管什么语言，都可以解析json，只需要按照json的规则来就行。
+
+2.json和XML比较
+①json的长度和xml格式比起来更短小；
+②json读写的速度更快；
+③json可以使用javascript内建的方法直接进行解析，转换成javascript对象，方便。
+
+3.JSON语法规则
+json数据的书写格式是：名称/值对。
+  名称/值对组合中的名称写在前面（在双引号中），值对写在后面（同样在双引号中），中间用冒号隔开：
+    比如“name”：“Jack”
+json的值可以是如下的类型：
+  数字（整点数或浮点数），比如123,1.23
+  字符串（在双引号中）
+  逻辑值（true或false）
+  数组（在方括号中）（“name”:"[Jack，Jane，betty]"）
+  对象（在花括号中）
+  null；
+ 栗子：
+ {
+    "staff":[
+    {"name":"qq","age":30},
+            {"name":"ww","age":30},
+            {"name":"ee","age":30}
+]
+}
+
+4.json解析、格式化和校验工具
+4.1json解析
+  ①eval和json.parse
+  ②在代码中使用eval是很危险的！特别是用它执行第三方的json数据（其中可能包含恶意代码）时，
+  尽可能使用JSON.parse()方法解析字符串本身，该方法还可以捕捉JSON中的语法错误。
+  var jsondata={
+    "staff":[
+    {"name":"qq","age":30},
+    {"name":"ww","age":30},
+    {"name":"ee","age":30}
+    ]};
+    var jsonobj=eval('('+jsondata+')');
+    var jsonobj2=JSON.parse(jsondata);
+    alert(jsonobj.staff[0].name);
+    alert(jsonobj2.staff[1].age);
+    
+5.json虽然语法比较简单，但是符号较多容易出错，推荐一款在线格式化校验json格式的网址：
+  [  www.JSONLint.com  ]
+  
+6.利用json字符串传递消息，前台和后台有一些约定，更方便确认数据信息。
